@@ -1,0 +1,1 @@
+from .MagnificationUI import MagnificationManager
