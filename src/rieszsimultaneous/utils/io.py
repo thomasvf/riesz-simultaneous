@@ -5,7 +5,19 @@ from pathlib import Path
 from typing import Union
 
 
-def read_video(path_video: Union[str, Path]):
+def read_video(path_video: Union[str, Path]) -> np.ndarray:
+    """Read video from file.
+
+    Parameters
+    ----------
+    path_video : Union[str, Path]
+        Path to video
+
+    Returns
+    -------
+    np.ndarray
+        Video in a numpy array.
+    """
     path_video = Path(path_video)
     vc = cv2.VideoCapture(str(path_video))
 

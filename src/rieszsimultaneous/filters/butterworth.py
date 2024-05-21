@@ -1,8 +1,10 @@
 import scipy.signal as signal
 import numpy as np
 
+from rieszsimultaneous.filters.base import FullVideoTimeFilter
 
-class ButterworthFullVideo:
+
+class ButterworthFullVideo(FullVideoTimeFilter):
     """Butterworth filter to processes the full video at once."""
 
     def __init__(self, frame_rate: float, freq_low: float, freq_high: float, order: int):

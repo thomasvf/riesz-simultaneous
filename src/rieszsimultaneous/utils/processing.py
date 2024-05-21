@@ -1,3 +1,4 @@
+from pathlib import Path
 import cv2
 import numpy as np
 
@@ -17,7 +18,8 @@ def show_mat(m):
     cv2.waitKey(0)
 
 
-def video_pyramid_size(path_src, min_dim=8):
+def video_pyramid_size(path_src: str, min_dim=8):
+    path_src = str(Path(path_src).resolve())
     vc = cv2.VideoCapture(path_src)
     ret, frame = vc.read()
     h, w, c = frame.shape
@@ -25,14 +27,22 @@ def video_pyramid_size(path_src, min_dim=8):
     return max_pyramid_size(h, w, min_dim=min_dim)
 
 
-def max_pyramid_size(h, w, min_dim=8):
-    """
-    Compute maximum pyramid for frame with given sizes.
+def max_pyramid_size(h: int, w: int, min_dim: int = 8) -> int:
+    """Compute maximum size of a pyramid for a frame with  thegiven sizes.
 
-    :param h: height of frames
-    :param w: width frames
-    :param min_dim: minimum dimension of any dimension of last frame.
-    :return: number of levels of laplacian pyramid (and similars), including the residue
+    Parameters
+    ----------
+    h : int
+        Height of the frame
+    w : int
+        Width of the frame
+    min_dim : int, optional
+        Minimum size of any dimension in the last frame, by default 8
+
+    Returns
+    -------
+    int
+        Number of levels of laplacian pyramid (and similars), including the residue
     """
     n = 0
     hi = h
@@ -45,13 +55,21 @@ def max_pyramid_size(h, w, min_dim=8):
     return n
 
 
-def get_gaussian_pyramid(frame_src, num_levels):
-    """
-    Compute gaussian pyramid from frame in format (h, w)
+def get_gaussian_pyramid(frame_src: np.ndarray, num_levels: int):
+    """Compute gaussian pyramid for frame_src with num_levels levels.
 
-    :param frame_src:
-    :param num_levels:
-    :return:
+    Parameters
+    ----------
+    frame_src : np.ndarray
+        Frame to compute the pyramid. Shape (H, W, C)
+    num_levels : int
+        Number of levels of the pyramid, besides the original image (which is the
+        level 0)
+
+    Returns
+    -------
+    Sequence[np.ndarray]
+        List of levels of the pyramid. The first element is the original image.
     """
     rows, cols = frame_src.shape[:2]
     if len(frame_src.shape) == 3:
