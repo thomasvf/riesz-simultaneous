@@ -50,10 +50,10 @@ If you find this code useful, consider citing the paper:
 @article{fontanari_simultaneous_2021,
 	author = {Fontanari, Thomas V. and Oliveira, Manuel M.},
 	title = {Simultaneous magnification of subtle motions and color variations in videos using {Riesz} pyramids},
-    journal = {Computers \& Graphics},
-    year = {2021},
+	journal = {Computers \& Graphics},
+	year = {2021},
 	volume = {101},
-    pages = {35--45},
+	pages = {35--45},
 	url = {https://linkinghub.elsevier.com/retrieve/pii/S0097849321001795},
 	doi = {10.1016/j.cag.2021.08.015},
 }
